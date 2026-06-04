@@ -62,8 +62,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2.5rem;
-    height: 100px;
+    padding: 0 3.5rem;
+    height: 130px;
     background: rgba(13,37,53,0.97);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(245,240,232,0.07);
@@ -77,11 +77,11 @@
     flex-shrink: 0;
   }
 
-  .nav-logo svg { width: 80px; height: 80px; flex-shrink: 0; }
+  .nav-logo svg { width: 120px; height: 120px; flex-shrink: 0; }
 
   .nav-logo-text {
     font-family: 'Bebas Neue', cursive;
-    font-size: 2.8rem;
+    font-size: 4rem;
     letter-spacing: 5px;
     color: var(--cream);
     line-height: 1;
@@ -118,188 +118,98 @@
   .nav-links a:hover { color: var(--cream); }
   .nav-links a:hover::after { width: 100%; }
 
-  /* ── NAV WORLD CUP — expands inline ── */
-  .nav-wc-wrap {
-    position: relative;
-  }
+  /* ── NAV DROPDOWNS — all links ── */
+  .nav-item { position: relative; }
+  .nav-item > a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--kit-yellow); transition: width 0.3s; }
+  .nav-item:hover > a { color: var(--cream); }
+  .nav-item:hover > a::after { width: 100%; }
 
-  .nav-wc {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    background: var(--kit-red);
-    color: white;
-    padding: 9px 18px;
-    border-radius: 3px;
-    font-size: 0.88rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: none;
-    animation: wc-pulse 2.5s ease-in-out infinite;
-    transition: padding 0.3s;
-    white-space: nowrap;
-  }
-
-  .nav-wc::after { display: none !important; }
-
-  @keyframes wc-pulse {
-    0%,100% { box-shadow: 0 0 0 0 rgba(230,51,41,0.5); }
-    50% { box-shadow: 0 0 0 8px rgba(230,51,41,0); }
-  }
-
-  /* Dropdown panel */
-  .nav-wc-panel {
+  .nav-dropdown {
     position: absolute;
-    top: calc(100% + 12px);
+    top: calc(100% + 16px);
     left: 50%;
-    transform: translateX(-50%);
-    width: 420px;
-    background: linear-gradient(135deg, #0d3d1a, #0d2535, #3d0d0d);
-    border: 1px solid rgba(245,197,24,0.2);
+    transform: translateX(-50%) translateY(-8px);
+    width: 320px;
+    background: rgba(11,25,38,0.98);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(245,197,24,0.15);
     border-radius: 6px;
     overflow: hidden;
     max-height: 0;
     opacity: 0;
     pointer-events: none;
-    transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, transform 0.3s ease;
-    transform: translateX(-50%) translateY(-8px);
+    transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease, transform 0.25s ease;
     z-index: 600;
   }
 
-  .nav-wc-wrap:hover .nav-wc-panel {
+  .nav-item:hover .nav-dropdown {
     max-height: 500px;
     opacity: 1;
     pointer-events: all;
     transform: translateX(-50%) translateY(0);
   }
 
-  .nav-wc-wrap:hover .nav-wc {
-    animation: none;
-    box-shadow: 0 6px 20px rgba(230,51,41,0.4);
-  }
+  .nav-drop-inner { padding: 1.1rem 1.25rem 1.25rem; }
 
-  .nav-wc-panel-inner {
-    padding: 1.5rem;
-  }
-
-  .nav-wc-panel h3 {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 2rem;
+  .nav-drop-label {
+    font-size: 0.58rem;
+    font-weight: 700;
     letter-spacing: 3px;
-    color: var(--cream);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .nav-wc-panel h3 span { color: var(--kit-yellow); }
-
-  .nav-wc-panel p {
-    font-size: 0.8rem;
-    color: rgba(245,240,232,0.55);
-    font-weight: 300;
-    margin-bottom: 1.25rem;
-    line-height: 1.6;
-  }
-
-  .nav-wc-matchup {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background: rgba(245,240,232,0.04);
-    border: 1px solid rgba(245,240,232,0.08);
-    border-radius: 4px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .nav-wc-team {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .nav-wc-team-flag { font-size: 2rem; }
-
-  .nav-wc-team img {
-    width: 64px; height: 64px;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-  }
-
-  .nav-wc-team-name {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    color: var(--cream);
-  }
-
-  .nav-wc-vs {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 2rem;
+    text-transform: uppercase;
     color: var(--kit-yellow);
+    margin-bottom: 0.85rem;
   }
 
-  .nav-wc-label {
-    text-align: center;
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--kit-red);
-    margin-bottom: 1rem;
+  .nav-drop-shirts { display: flex; gap: 6px; margin-bottom: 1rem; }
+  .nav-drop-shirt {
+    flex: 1; aspect-ratio: 1; border-radius: 3px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 1.5rem; overflow: hidden;
   }
+  .nav-drop-shirt-label { font-family: 'Bebas Neue', cursive; font-size: 0.52rem; letter-spacing: 1px; color: rgba(255,255,255,0.6); margin-top: 2px; }
 
-  .nav-wc-deals {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 1rem;
+  .nav-drop-flags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 1rem; }
+  .nav-drop-flag {
+    background: rgba(245,240,232,0.05); border: 1px solid rgba(245,240,232,0.08);
+    border-radius: 3px; padding: 6px 8px; font-size: 1.2rem;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
   }
+  .nav-drop-flag-name { font-family: 'Bebas Neue', cursive; font-size: 0.5rem; letter-spacing: 1px; color: rgba(245,240,232,0.45); }
 
-  .nav-wc-deal {
-    flex: 1;
-    background: rgba(245,240,232,0.05);
-    border: 1px solid rgba(245,240,232,0.08);
-    border-radius: 3px;
-    padding: 10px;
-    text-align: center;
+  .nav-drop-steps { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+  .nav-drop-step {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(245,240,232,0.04); border-radius: 3px; padding: 7px 10px;
   }
+  .nav-drop-step-num { font-family: 'Bebas Neue', cursive; font-size: 1rem; color: var(--kit-yellow); line-height: 1; flex-shrink: 0; width: 18px; }
+  .nav-drop-step-icon { font-size: 0.95rem; flex-shrink: 0; }
+  .nav-drop-step-text { font-family: 'Bebas Neue', cursive; font-size: 0.82rem; letter-spacing: 1.5px; color: var(--cream); }
 
-  .nav-wc-deal-price {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 1.4rem;
-    color: var(--kit-yellow);
-    line-height: 1;
+  .nav-drop-wc-nations {
+    display: flex; justify-content: space-around; align-items: center;
+    background: rgba(245,240,232,0.04); border: 1px solid rgba(245,240,232,0.07);
+    border-radius: 3px; padding: 0.7rem; margin-bottom: 0.85rem;
   }
+  .nav-drop-wc-team { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .nav-drop-wc-flag { font-size: 1.7rem; }
+  .nav-drop-wc-name { font-family: 'Bebas Neue', cursive; font-size: 0.62rem; letter-spacing: 1.5px; color: var(--cream); }
+  .nav-drop-wc-vs { font-family: 'Bebas Neue', cursive; font-size: 1.4rem; color: var(--kit-yellow); }
 
-  .nav-wc-deal-label {
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(245,240,232,0.4);
+  .nav-drop-prices { display: flex; gap: 6px; margin-bottom: 1rem; }
+  .nav-drop-price {
+    flex: 1; background: rgba(245,240,232,0.04); border: 1px solid rgba(245,240,232,0.07);
+    border-radius: 3px; padding: 7px 5px; text-align: center;
   }
+  .nav-drop-price-num { font-family: 'Bebas Neue', cursive; font-size: 1.15rem; color: var(--kit-yellow); line-height: 1; }
+  .nav-drop-price-label { font-size: 0.52rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,240,232,0.38); }
 
-  .nav-wc-btn {
-    display: block;
-    width: 100%;
-    background: var(--kit-red);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 3px;
-    transition: background 0.2s;
+  .nav-drop-cta {
+    display: block; width: 100%; background: var(--kit-yellow); color: var(--teal);
+    text-align: center; padding: 8px; font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+    border-radius: 3px; transition: background 0.2s;
   }
-
-  .nav-wc-btn:hover { background: var(--kit-yellow); color: var(--teal); }
+  .nav-drop-cta:hover { background: var(--cream); }
 
   .nav-right {
     display: flex;
@@ -341,7 +251,7 @@
   /* ── LIVE SCORES TICKER ── */
   .scores-bar {
     position: fixed;
-    top: 100px; left: 0; right: 0;
+    top: 130px; left: 0; right: 0;
     z-index: 499;
     background: rgba(13,37,53,0.98);
     border-bottom: 2px solid var(--kit-yellow);
@@ -420,21 +330,149 @@
 
   /* ── HERO ── */
   .hero {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 175px;
     min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+  /* WC Feature — top half: takes exactly 50% of remaining space */
+  .hero-wc-feature {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    position: relative;
+    gap: 0;
+    flex: 1 1 50%;
+    background: linear-gradient(135deg, #0d3d1a 0%, #0d2535 50%, #3d0d0d 100%);
+    border-bottom: 2px solid rgba(245,197,24,0.15);
     overflow: hidden;
-    padding-top: 140px;
+  }
+
+  .hero-wc-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.25rem 3rem;
+    overflow: hidden;
+  }
+
+  .hero-wc-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    color: var(--cream);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-wc-title span { color: var(--kit-yellow); }
+
+  .hero-wc-desc {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.55);
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 380px;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .hero-wc-feature-prices {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .hero-wc-price-pill {
+    background: rgba(245,240,232,0.07);
+    border: 1px solid rgba(245,240,232,0.1);
+    border-radius: 3px;
+    padding: 7px 14px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.1rem;
+    color: var(--cream);
+    letter-spacing: 1px;
+  }
+
+  .hero-wc-price-pill span {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+    margin-left: 4px;
+  }
+
+  .hero-wc-price-highlight {
+    border-color: var(--kit-yellow);
+    background: rgba(245,197,24,0.1);
+    color: var(--kit-yellow);
+  }
+
+  .hero-wc-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+  }
+
+  .hero-wc-nations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    width: 100%;
+  }
+
+  .hero-wc-nation-card {
+    background: rgba(245,240,232,0.05);
+    border: 1px solid rgba(245,240,232,0.08);
+    border-radius: 4px;
+    padding: 0.5rem 0.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: default;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .hero-wc-nation-card:hover {
+    background: rgba(245,240,232,0.1);
+    border-color: rgba(245,197,24,0.3);
+  }
+
+  .hero-wc-nation-more { border-color: rgba(245,197,24,0.2); }
+
+  .hero-wc-nation-flag { font-size: 1.4rem; }
+
+  .hero-wc-nation-name {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    color: rgba(245,240,232,0.65);
+    text-align: center;
+  }
+
+  /* Main hero — bottom half */
+  .hero-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1 1 50%;
+    position: relative;
+    z-index: 3;
+    margin-top: 0;
   }
 
   .hero-left {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 4rem 3rem;
+    justify-content: flex-start;
+    padding: 1.5rem 3rem 2rem;
     position: relative;
     z-index: 2;
+    background: var(--teal);
   }
 
   .hero-eyebrow {
@@ -523,159 +561,6 @@
 
   .btn-outline:hover { border-color: var(--cream); background: rgba(245,240,232,0.06); }
 
-  /* ── HERO WC EXPAND ── */
-  .hero-wc-wrap {
-    position: relative;
-    align-self: flex-start;
-    margin-top: 0.5rem;
-  }
-
-  .hero-wc-trigger {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: linear-gradient(135deg, #0d3d1a, #0d2535, #3d0d0d);
-    border: 1px solid rgba(245,197,24,0.25);
-    border-radius: 4px;
-    padding: 14px 22px;
-    text-decoration: none;
-    cursor: none;
-    animation: hero-wc-glow 3s ease-in-out infinite;
-    transition: border-color 0.3s, border-radius 0.3s;
-    width: 100%;
-    max-width: 420px;
-  }
-
-  @keyframes hero-wc-glow {
-    0%,100% { box-shadow: 0 0 0 0 rgba(245,197,24,0.1); }
-    50% { box-shadow: 0 0 20px 4px rgba(245,197,24,0.08); }
-  }
-
-  .hero-wc-flags { font-size: 1.3rem; letter-spacing: 1px; }
-
-  .hero-wc-text { display: flex; flex-direction: column; flex: 1; }
-
-  .hero-wc-text strong {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 1.1rem;
-    letter-spacing: 3px;
-    color: var(--kit-yellow);
-    line-height: 1;
-  }
-
-  .hero-wc-text span {
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(245,240,232,0.45);
-  }
-
-  .hero-wc-arrow {
-    font-size: 1.1rem;
-    color: var(--kit-yellow);
-    transition: transform 0.3s;
-  }
-
-  /* Expand panel */
-  .hero-wc-expand {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease;
-    opacity: 0;
-    border-left: 1px solid rgba(245,197,24,0.15);
-    border-right: 1px solid rgba(245,197,24,0.15);
-    border-bottom: 1px solid rgba(245,197,24,0.15);
-    border-radius: 0 0 4px 4px;
-    background: linear-gradient(135deg, #0d3d1a, #0d2535, #3d0d0d);
-    max-width: 420px;
-  }
-
-  .hero-wc-wrap:hover .hero-wc-expand {
-    max-height: 600px;
-    opacity: 1;
-  }
-
-  .hero-wc-wrap:hover .hero-wc-trigger {
-    border-radius: 4px 4px 0 0;
-    border-color: rgba(245,197,24,0.4);
-    animation: none;
-  }
-
-  .hero-wc-wrap:hover .hero-wc-arrow {
-    transform: rotate(90deg);
-  }
-
-  .hero-wc-expand-inner {
-    padding: 1.25rem 1.5rem 1.5rem;
-  }
-
-  .hero-wc-expand-inner p {
-    font-size: 0.78rem;
-    color: rgba(245,240,232,0.55);
-    font-weight: 300;
-    line-height: 1.65;
-    margin-bottom: 1rem;
-  }
-
-  .hero-expand-matchup {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background: rgba(245,240,232,0.04);
-    border: 1px solid rgba(245,240,232,0.07);
-    border-radius: 3px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .expand-team { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .expand-team-flag { font-size: 1.8rem; }
-  .expand-team-shirt { font-size: 2.5rem; }
-  .expand-team-name { font-family: 'Bebas Neue', cursive; font-size: 0.8rem; letter-spacing: 2px; color: var(--cream); }
-  .expand-vs { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; color: var(--kit-yellow); }
-
-  .expand-which {
-    text-align: center;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--kit-red);
-    margin-bottom: 0.75rem;
-  }
-
-  .expand-deals { display: flex; gap: 6px; margin-bottom: 1rem; }
-
-  .expand-deal {
-    flex: 1;
-    background: rgba(245,240,232,0.04);
-    border: 1px solid rgba(245,240,232,0.07);
-    border-radius: 2px;
-    padding: 8px 6px;
-    text-align: center;
-  }
-
-  .expand-deal-price { font-family: 'Bebas Neue', cursive; font-size: 1.2rem; color: var(--kit-yellow); line-height: 1; }
-  .expand-deal-label { font-size: 0.58rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,240,232,0.38); }
-
-  .expand-cta {
-    display: block;
-    background: var(--kit-red);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 3px;
-    transition: background 0.2s;
-  }
-
-  .expand-cta:hover { background: var(--kit-yellow); color: var(--teal); }
-
   .hero-stats {
     display: flex;
     gap: 2.5rem;
@@ -688,7 +573,7 @@
   .hero-stat-label { font-size: 0.66rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,240,232,0.38); }
 
   /* Hero right collage */
-  .hero-right { position: relative; overflow: hidden; }
+  .hero-right { position: relative; overflow: hidden; background: var(--teal); }
 
   .hero-collage {
     display: grid;
@@ -789,7 +674,7 @@
   .league-tab:hover, .league-tab.active { background: var(--cream); color: var(--teal); border-color: var(--cream); }
 
   /* ── SHIRT CARDS ── */
-  .shirts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1.5px; }
+  .shirts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5px; }
 
   .shirt-card {
     position: relative;
@@ -938,6 +823,7 @@
     .hero-right { display: none; }
     nav { padding: 0 1.5rem; height: 80px; }
     .scores-bar { top: 80px; }
+    .hero { padding-top: 120px; }
     .nav-links { display: none; }
     .nav-logo svg { width: 60px; height: 60px; }
     .nav-logo-text { font-size: 2rem; }
@@ -975,41 +861,89 @@
   </a>
 
   <ul class="nav-links">
-    <li><a href="#leagues">Leagues</a></li>
-    <li><a href="#nations">Nations</a></li>
-    <li>
-      <!-- NAV WC EXPAND -->
-      <div class="nav-wc-wrap">
-        <a href="#worldcup" class="nav-wc">⚽ World Cup 2026</a>
-        <div class="nav-wc-panel">
-          <div class="nav-wc-panel-inner">
-            <h3>World Cup <span>2026</span></h3>
-            <p>48 teams. 80 games. USA, Canada & Mexico as hosts. Get your nation's kit now.</p>
-            <div class="nav-wc-matchup">
-              <div class="nav-wc-team">
-                <div class="nav-wc-team-flag">🇲🇽</div>
-                <div style="font-size:2.5rem">👕</div>
-                <div class="nav-wc-team-name">Mexico</div>
-              </div>
-              <div class="nav-wc-vs">VS</div>
-              <div class="nav-wc-team">
-                <div class="nav-wc-team-flag">🇿🇦</div>
-                <div style="font-size:2.5rem">👕</div>
-                <div class="nav-wc-team-name">South Africa</div>
-              </div>
+    <!-- LEAGUES DROPDOWN -->
+    <li class="nav-item">
+      <a href="#leagues">Leagues</a>
+      <div class="nav-dropdown">
+        <div class="nav-drop-inner">
+          <div class="nav-drop-label">Club Kits</div>
+          <div class="nav-drop-shirts">
+            <div class="nav-drop-shirt" style="background:linear-gradient(160deg,#a50044,#003087);">
+              <span>👕</span><div class="nav-drop-shirt-label">Barca 10/11</div>
             </div>
-            <div class="nav-wc-label">⚽ Which Kit Wins?</div>
-            <div class="nav-wc-deals">
-              <div class="nav-wc-deal"><div class="nav-wc-deal-price">£23</div><div class="nav-wc-deal-label">Per Shirt</div></div>
-              <div class="nav-wc-deal"><div class="nav-wc-deal-price">£65</div><div class="nav-wc-deal-label">3 For Deal</div></div>
-              <div class="nav-wc-deal"><div class="nav-wc-deal-price">+£3</div><div class="nav-wc-deal-label">Printing</div></div>
+            <div class="nav-drop-shirt" style="background:linear-gradient(160deg,#c8102e,#6b0000);">
+              <span>👕</span><div class="nav-drop-shirt-label">Liverpool 14</div>
             </div>
-            <a href="https://www.instagram.com/retroroster" target="_blank" class="nav-wc-btn">DM To Order Now ↗</a>
+            <div class="nav-drop-shirt" style="background:linear-gradient(160deg,#c8102e,#800000);">
+              <span>👕</span><div class="nav-drop-shirt-label">Man Utd 07</div>
+            </div>
+            <div class="nav-drop-shirt" style="background:linear-gradient(160deg,#034694,#000d29);">
+              <span>👕</span><div class="nav-drop-shirt-label">Chelsea 11</div>
+            </div>
           </div>
+          <a href="#leagues" class="nav-drop-cta">Browse All Leagues ↗</a>
         </div>
       </div>
     </li>
-    <li><a href="#order">How To Order</a></li>
+
+    <!-- NATIONS DROPDOWN -->
+    <li class="nav-item">
+      <a href="#nations">Nations</a>
+      <div class="nav-dropdown">
+        <div class="nav-drop-inner">
+          <div class="nav-drop-label">International Kits</div>
+          <div class="nav-drop-flags">
+            <div class="nav-drop-flag"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><div class="nav-drop-flag-name">England</div></div>
+            <div class="nav-drop-flag"><span>🇧🇷</span><div class="nav-drop-flag-name">Brazil</div></div>
+            <div class="nav-drop-flag"><span>🇦🇷</span><div class="nav-drop-flag-name">Argentina</div></div>
+            <div class="nav-drop-flag"><span>🇫🇷</span><div class="nav-drop-flag-name">France</div></div>
+            <div class="nav-drop-flag"><span>🇩🇪</span><div class="nav-drop-flag-name">Germany</div></div>
+            <div class="nav-drop-flag"><span>🇳🇬</span><div class="nav-drop-flag-name">Nigeria</div></div>
+            <div class="nav-drop-flag"><span>🇯🇵</span><div class="nav-drop-flag-name">Japan</div></div>
+            <div class="nav-drop-flag"><span>🌍</span><div class="nav-drop-flag-name">80+ More</div></div>
+          </div>
+          <a href="#nations" class="nav-drop-cta">All Nations ↗</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- WORLD CUP DROPDOWN -->
+    <li class="nav-item">
+      <a href="#worldcup">World Cup 2026</a>
+      <div class="nav-dropdown">
+        <div class="nav-drop-inner">
+          <div class="nav-drop-label">⚽ World Cup 2026</div>
+          <div class="nav-drop-wc-nations">
+            <div class="nav-drop-wc-team"><div class="nav-drop-wc-flag">🇲🇽</div><div class="nav-drop-wc-name">Mexico</div></div>
+            <div class="nav-drop-wc-vs">VS</div>
+            <div class="nav-drop-wc-team"><div class="nav-drop-wc-flag">🇿🇦</div><div class="nav-drop-wc-name">S. Africa</div></div>
+          </div>
+          <div class="nav-drop-prices">
+            <div class="nav-drop-price"><div class="nav-drop-price-num">£23</div><div class="nav-drop-price-label">Per Shirt</div></div>
+            <div class="nav-drop-price"><div class="nav-drop-price-num">£65</div><div class="nav-drop-price-label">3 For Deal</div></div>
+            <div class="nav-drop-price"><div class="nav-drop-price-num">+£3</div><div class="nav-drop-price-label">Printing</div></div>
+          </div>
+          <a href="#worldcup" class="nav-drop-cta">Shop World Cup Kits ↗</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- HOW TO ORDER DROPDOWN -->
+    <li class="nav-item">
+      <a href="#order">How To Order</a>
+      <div class="nav-dropdown">
+        <div class="nav-drop-inner">
+          <div class="nav-drop-label">Dead Simple</div>
+          <div class="nav-drop-steps">
+            <div class="nav-drop-step"><div class="nav-drop-step-num">01</div><div class="nav-drop-step-icon">👀</div><div class="nav-drop-step-text">Browse the collection</div></div>
+            <div class="nav-drop-step"><div class="nav-drop-step-num">02</div><div class="nav-drop-step-icon">📩</div><div class="nav-drop-step-text">DM on Instagram</div></div>
+            <div class="nav-drop-step"><div class="nav-drop-step-num">03</div><div class="nav-drop-step-icon">💳</div><div class="nav-drop-step-text">Pay & confirm</div></div>
+            <div class="nav-drop-step"><div class="nav-drop-step-num">04</div><div class="nav-drop-step-icon">📦</div><div class="nav-drop-step-text">Delivered to your door</div></div>
+          </div>
+          <a href="https://www.instagram.com/retroroster" target="_blank" class="nav-drop-cta">Order on Instagram ↗</a>
+        </div>
+      </div>
+    </li>
   </ul>
 
   <div class="nav-right">
@@ -1077,111 +1011,110 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-left">
-    <div class="hero-eyebrow reveal">
-      <div class="hero-eyebrow-line"></div>
-      <span>Every kit. Every era. Every nation.</span>
-    </div>
 
-    <h1 class="hero-title reveal reveal-delay-1">
-      <span class="w1">Your</span> <span class="w2">Nation.</span><br>
-      <span class="w3">Your</span> <span class="w4">Shirt.</span>
-    </h1>
-
-    <div class="hero-tagline reveal reveal-delay-2">Wear Every Shirt.</div>
-
-    <p class="hero-sub reveal reveal-delay-2">From legendary retro strips to this season's cuts — if it exists in football, we can find it. The most complete shirt collection anywhere.</p>
-
-    <div class="hero-ctas reveal reveal-delay-3">
-      <a href="#leagues" class="btn-primary">Browse The Collection</a>
-      <a href="https://www.instagram.com/retroroster" target="_blank" class="btn-outline">@retroroster ↗</a>
-    </div>
-
-    <!-- HERO WC INLINE EXPAND -->
-    <div class="hero-wc-wrap reveal reveal-delay-3">
-      <div class="hero-wc-trigger">
-        <div class="hero-wc-flags">🇲🇽 🇿🇦 🇧🇷 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-        <div class="hero-wc-text">
-          <strong>World Cup 2026</strong>
-          <span>Hover to explore all nations</span>
-        </div>
-        <div class="hero-wc-arrow">→</div>
+  <!-- TOP HALF: World Cup Feature -->
+  <div class="hero-wc-feature">
+    <div class="hero-wc-left reveal">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>World Cup 2026</span>
       </div>
-      <div class="hero-wc-expand">
-        <div class="hero-wc-expand-inner">
-          <p>48 teams. 80 games. USA, Canada & Mexico as hosts. The biggest tournament in football history — get your nation's shirt now before they go.</p>
-          <div class="hero-expand-matchup">
-            <div class="expand-team">
-              <div class="expand-team-flag">🇲🇽</div>
-              <div class="expand-team-shirt">👕</div>
-              <div class="expand-team-name">Mexico</div>
-            </div>
-            <div class="expand-vs">VS</div>
-            <div class="expand-team">
-              <div class="expand-team-flag">🇿🇦</div>
-              <div class="expand-team-shirt">👕</div>
-              <div class="expand-team-name">South Africa</div>
-            </div>
-          </div>
-          <div class="expand-which">⚽ Which Kit Wins?</div>
-          <div class="expand-deals">
-            <div class="expand-deal"><div class="expand-deal-price">£23</div><div class="expand-deal-label">Per Shirt</div></div>
-            <div class="expand-deal"><div class="expand-deal-price">£65</div><div class="expand-deal-label">3 For Deal</div></div>
-            <div class="expand-deal"><div class="expand-deal-price">+£3</div><div class="expand-deal-label">Printing</div></div>
-          </div>
-          <a href="https://www.instagram.com/retroroster" target="_blank" class="expand-cta">DM To Order Your Kit ↗</a>
-        </div>
+      <h2 class="hero-wc-title">World Cup<br><span>2026</span><br>Mode.</h2>
+      <p class="hero-wc-desc">48 teams. 80 games. USA, Canada and Mexico as hosts. The biggest tournament in football history — get your nation's shirt before they go.</p>
+      <div class="hero-wc-feature-prices">
+        <div class="hero-wc-price-pill">£23 <span>Per Shirt</span></div>
+        <div class="hero-wc-price-pill hero-wc-price-highlight">£65 <span>3 For Deal</span></div>
+        <div class="hero-wc-price-pill">+£3 <span>Printing</span></div>
       </div>
+      <a href="https://www.instagram.com/retroroster" target="_blank" class="btn-primary" style="margin-top:1.5rem;display:inline-block;">Shop World Cup Kits</a>
     </div>
-
-    <div class="hero-stats reveal reveal-delay-4">
-      <div><div class="hero-stat-num">50+</div><div class="hero-stat-label">Leagues</div></div>
-      <div><div class="hero-stat-num">80+</div><div class="hero-stat-label">Nations</div></div>
-      <div><div class="hero-stat-num">£23</div><div class="hero-stat-label">From</div></div>
+    <div class="hero-wc-right reveal reveal-delay-2">
+      <div class="hero-wc-nations-grid">
+        <div class="hero-wc-nation-card"><div class="hero-wc-nation-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="hero-wc-nation-name">England</div></div>
+        <div class="hero-wc-nation-card"><div class="hero-wc-nation-flag">🇧🇷</div><div class="hero-wc-nation-name">Brazil</div></div>
+        <div class="hero-wc-nation-card"><div class="hero-wc-nation-flag">🇦🇷</div><div class="hero-wc-nation-name">Argentina</div></div>
+        <div class="hero-wc-nation-card"><div class="hero-wc-nation-flag">🇫🇷</div><div class="hero-wc-nation-name">France</div></div>
+        <div class="hero-wc-nation-card"><div class="hero-wc-nation-flag">🇩🇪</div><div class="hero-wc-nation-name">Germany</div></div>
+        <div class="hero-wc-nation-card"><div class="hero-wc-nation-flag">🇲🇽</div><div class="hero-wc-nation-name">Mexico</div></div>
+        <div class="hero-wc-nation-card"><div class="hero-wc-nation-flag">🇺🇸</div><div class="hero-wc-nation-name">USA</div></div>
+        <div class="hero-wc-nation-card"><div class="hero-wc-nation-flag">🇯🇵</div><div class="hero-wc-nation-name">Japan</div></div>
+        <div class="hero-wc-nation-card hero-wc-nation-more"><div class="hero-wc-nation-flag">🌍</div><div class="hero-wc-nation-name">+72 More</div></div>
+      </div>
     </div>
   </div>
 
-  <!-- COLLAGE -->
-  <div class="hero-right">
-    <div class="hero-collage">
-      <div class="collage-cell tall" style="background:linear-gradient(160deg,#a50044,#003087);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><defs><pattern id="sp_bca" x="0" y="0" width="10" height="110" patternUnits="userSpaceOnUse"><rect width="5" height="110" fill="#a50044"/><rect x="5" width="5" height="110" fill="#003087"/></pattern></defs><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#003087" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#003087" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="url(#sp_bca)" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5c518" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Barca 10/11</div></div>
+  <!-- BOTTOM HALF: Original hero text + collage -->
+  <div class="hero-main">
+    <div class="hero-left">
+      <div class="hero-eyebrow reveal">
+        <div class="hero-eyebrow-line"></div>
+        <span>Every kit. Every era. Every nation.</span>
       </div>
-      <div class="collage-cell" style="background:linear-gradient(160deg,#74acdf,#c9e8f5);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><defs><pattern id="sp_arg" x="0" y="0" width="10" height="110" patternUnits="userSpaceOnUse"><rect width="5" height="110" fill="#74acdf"/><rect x="5" width="5" height="110" fill="#f5f0e8"/></pattern></defs><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#74acdf" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#74acdf" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="url(#sp_arg)" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label" style="color:rgba(0,0,0,0.55)">Argentina 24</div></div>
+
+      <h1 class="hero-title reveal reveal-delay-1">
+        <span class="w1">Your</span> <span class="w2">Nation.</span><br>
+        <span class="w3">Your</span> <span class="w4">Shirt.</span>
+      </h1>
+
+      <div class="hero-tagline reveal reveal-delay-2">Wear Every Shirt.</div>
+
+      <p class="hero-sub reveal reveal-delay-2">From legendary retro strips to this season's cuts — if it exists in football, we can find it. The most complete shirt collection anywhere.</p>
+
+      <div class="hero-ctas reveal reveal-delay-3">
+        <a href="#leagues" class="btn-primary">Browse The Collection</a>
+        <a href="https://www.instagram.com/retroroster" target="_blank" class="btn-outline">@retroroster ↗</a>
       </div>
-      <div class="collage-cell" style="background:linear-gradient(160deg,#009c3b,#ffdf00);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#009c3b" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#009c3b" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#009c3b" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#003087" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#f5c518" text-anchor="middle" font-weight="bold">CBF</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#003087" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Brazil 02</div></div>
+
+      <div class="hero-stats reveal reveal-delay-4">
+        <div><div class="hero-stat-num">50+</div><div class="hero-stat-label">Leagues</div></div>
+        <div><div class="hero-stat-num">80+</div><div class="hero-stat-label">Nations</div></div>
+        <div><div class="hero-stat-num">£23</div><div class="hero-stat-label">From</div></div>
       </div>
-      <div class="collage-cell" style="background:linear-gradient(160deg,#c8102e,#6b0000);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#c8102e" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#c8102e" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#c8102e" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#f5f0e8" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#c8102e" text-anchor="middle" font-weight="bold">Standard</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#ffffff" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Liverpool 14</div></div>
-      </div>
-      <div class="collage-cell tall" style="background:linear-gradient(160deg,#008751,#d4f5e2);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#f5c518" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#f5c518" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#008751" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="26" y="34" width="48" height="5" fill="#f5f0e8"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label" style="color:rgba(0,0,0,0.55)">Nigeria 94</div></div>
-      </div>
-      <div class="collage-cell" style="background:linear-gradient(160deg,#dddddd,#888888);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="26" y="28" width="48" height="5" fill="#111111"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label" style="color:rgba(0,0,0,0.55)">Germany 14</div></div>
-      </div>
-      <div class="collage-cell" style="background:linear-gradient(160deg,#004170,#e63329);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#004170" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#004170" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#004170" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="26" y="38" width="48" height="22" fill="#e63329"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#004170" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">PSG 13/14</div></div>
-      </div>
-      <div class="collage-cell" style="background:linear-gradient(160deg,#c8102e,#800000);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#c8102e" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#c8102e" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#c8102e" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#f5c518" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#c8102e" text-anchor="middle" font-weight="bold">AIG</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Man Utd 07</div></div>
-      </div>
-      <div class="collage-cell" style="background:linear-gradient(160deg,#034694,#000d29);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#034694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#034694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#034694" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#f5f0e8" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#034694" text-anchor="middle" font-weight="bold">Samsung</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#034694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Chelsea 11</div></div>
-      </div>
-      <div class="collage-cell" style="background:linear-gradient(160deg,#003f8a,#bc002d);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#003f8a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#003f8a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#003f8a" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="26" y="26" width="48" height="3" fill="#bc002d"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#bc002d" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Japan 22</div></div>
-      </div>
-      <div class="collage-cell" style="background:linear-gradient(160deg,#f4a0c0,#2a2a2a);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#f4a0c0" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#f4a0c0" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f4a0c0" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#f5f0e8" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#333333" text-anchor="middle" font-weight="bold">Jeep</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#333333" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Juve Away</div></div>
-      </div>
-      <div class="collage-cell" style="background:linear-gradient(160deg,#9b1a1a,#f5c518);">
-        <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#9b1a1a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#9b1a1a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#9b1a1a" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#f5c518" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#9b1a1a" text-anchor="middle" font-weight="bold">O2</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#9b1a1a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Arsenal 05</div></div>
+    </div>
+
+    <!-- COLLAGE -->
+    <div class="hero-right">
+      <div class="hero-collage">
+        <div class="collage-cell tall" style="background:linear-gradient(160deg,#a50044,#003087);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><defs><pattern id="sp_bca" x="0" y="0" width="10" height="110" patternUnits="userSpaceOnUse"><rect width="5" height="110" fill="#a50044"/><rect x="5" width="5" height="110" fill="#003087"/></pattern></defs><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#003087" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#003087" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="url(#sp_bca)" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5c518" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Barca 10/11</div></div>
+        </div>
+        <div class="collage-cell" style="background:linear-gradient(160deg,#74acdf,#c9e8f5);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><defs><pattern id="sp_arg" x="0" y="0" width="10" height="110" patternUnits="userSpaceOnUse"><rect width="5" height="110" fill="#74acdf"/><rect x="5" width="5" height="110" fill="#f5f0e8"/></pattern></defs><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#74acdf" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#74acdf" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="url(#sp_arg)" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label" style="color:rgba(0,0,0,0.55)">Argentina 24</div></div>
+        </div>
+        <div class="collage-cell" style="background:linear-gradient(160deg,#009c3b,#ffdf00);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#009c3b" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#009c3b" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#009c3b" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#003087" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#f5c518" text-anchor="middle" font-weight="bold">CBF</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#003087" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Brazil 02</div></div>
+        </div>
+        <div class="collage-cell" style="background:linear-gradient(160deg,#c8102e,#6b0000);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#c8102e" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#c8102e" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#c8102e" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#f5f0e8" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#c8102e" text-anchor="middle" font-weight="bold">Standard</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#ffffff" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Liverpool 14</div></div>
+        </div>
+        <div class="collage-cell tall" style="background:linear-gradient(160deg,#008751,#d4f5e2);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#f5c518" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#f5c518" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#008751" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="26" y="34" width="48" height="5" fill="#f5f0e8"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label" style="color:rgba(0,0,0,0.55)">Nigeria 94</div></div>
+        </div>
+        <div class="collage-cell" style="background:linear-gradient(160deg,#dddddd,#888888);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="26" y="28" width="48" height="5" fill="#111111"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label" style="color:rgba(0,0,0,0.55)">Germany 14</div></div>
+        </div>
+        <div class="collage-cell" style="background:linear-gradient(160deg,#004170,#e63329);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#004170" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#004170" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#004170" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="26" y="38" width="48" height="22" fill="#e63329"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#004170" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">PSG 13/14</div></div>
+        </div>
+        <div class="collage-cell" style="background:linear-gradient(160deg,#c8102e,#800000);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#c8102e" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#c8102e" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#c8102e" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#f5c518" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#c8102e" text-anchor="middle" font-weight="bold">AIG</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f5f0e8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Man Utd 07</div></div>
+        </div>
+        <div class="collage-cell" style="background:linear-gradient(160deg,#034694,#000d29);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#034694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#034694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#034694" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#f5f0e8" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#034694" text-anchor="middle" font-weight="bold">Samsung</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#034694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Chelsea 11</div></div>
+        </div>
+        <div class="collage-cell" style="background:linear-gradient(160deg,#003f8a,#bc002d);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#003f8a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#003f8a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#003f8a" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="26" y="26" width="48" height="3" fill="#bc002d"/><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#bc002d" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Japan 22</div></div>
+        </div>
+        <div class="collage-cell" style="background:linear-gradient(160deg,#f4a0c0,#2a2a2a);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#f4a0c0" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#f4a0c0" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#f4a0c0" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#f5f0e8" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#333333" text-anchor="middle" font-weight="bold">Jeep</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#333333" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Juve Away</div></div>
+        </div>
+        <div class="collage-cell" style="background:linear-gradient(160deg,#9b1a1a,#f5c518);">
+          <div class="shirt-placeholder"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4))"><ellipse cx="50" cy="106" rx="26" ry="3.5" fill="rgba(0,0,0,0.25)"/><path d="M8,22 L2,46 L22,50 L26,28 Z" fill="#9b1a1a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M92,22 L98,46 L78,50 L74,28 Z" fill="#9b1a1a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><path d="M26,24 L26,102 L74,102 L74,24 L62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#9b1a1a" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/><rect x="34" y="54" width="32" height="13" rx="2" fill="#f5c518" opacity="0.85"/><text x="50" y="63" font-size="5" font-family="Arial,sans-serif" fill="#9b1a1a" text-anchor="middle" font-weight="bold">O2</text><path d="M38,16 Q44,25 50,23 Q56,25 62,16 Q56,9 50,11 Q44,9 38,16 Z" fill="#9b1a1a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg><div class="shirt-label">Arsenal 05</div></div>
+        </div>
       </div>
     </div>
   </div>
+
 </section>
 
 <!-- MARQUEE -->
