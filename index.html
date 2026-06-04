@@ -818,22 +818,216 @@
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
 
+  /* ── HAMBURGER BUTTON ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 600;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--cream);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER ── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(13,37,53,0.98);
+    z-index: 550;
+    flex-direction: column;
+    padding: 100px 2rem 2rem;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .mobile-menu.open { transform: translateX(0); }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.07);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    color: var(--cream);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .mobile-nav-link span { font-size: 1rem; color: var(--kit-yellow); }
+
+  .mobile-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .mobile-dropdown.open { max-height: 600px; }
+
+  .mobile-dropdown-inner {
+    padding: 1rem 0 1.5rem;
+  }
+
+  .mobile-drop-shirts { display: flex; gap: 8px; margin-bottom: 1rem; }
+  .mobile-drop-shirt {
+    flex: 1; aspect-ratio: 1; border-radius: 4px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+  }
+  .mobile-drop-shirt-label { font-family: 'Bebas Neue', cursive; font-size: 0.55rem; letter-spacing: 1px; color: rgba(255,255,255,0.6); margin-top: 3px; }
+
+  .mobile-drop-flags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+  .mobile-drop-flag {
+    background: rgba(245,240,232,0.05); border: 1px solid rgba(245,240,232,0.08);
+    border-radius: 3px; padding: 8px 10px; font-size: 1.4rem;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+  }
+  .mobile-drop-flag-name { font-family: 'Bebas Neue', cursive; font-size: 0.5rem; letter-spacing: 1px; color: rgba(245,240,232,0.5); }
+
+  .mobile-drop-steps { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+  .mobile-drop-step {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(245,240,232,0.04); border-radius: 3px; padding: 10px 12px;
+  }
+  .mobile-drop-step-num { font-family: 'Bebas Neue', cursive; font-size: 1.1rem; color: var(--kit-yellow); width: 20px; flex-shrink: 0; }
+  .mobile-drop-step-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .mobile-drop-step-text { font-family: 'Bebas Neue', cursive; font-size: 0.9rem; letter-spacing: 1.5px; color: var(--cream); }
+
+  .mobile-drop-wc {
+    display: flex; justify-content: space-around; align-items: center;
+    background: rgba(245,240,232,0.04); border: 1px solid rgba(245,240,232,0.07);
+    border-radius: 3px; padding: 1rem; margin-bottom: 1rem;
+  }
+  .mobile-drop-wc-team { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .mobile-drop-wc-flag { font-size: 2rem; }
+  .mobile-drop-wc-name { font-family: 'Bebas Neue', cursive; font-size: 0.7rem; letter-spacing: 1.5px; color: var(--cream); }
+  .mobile-drop-wc-vs { font-family: 'Bebas Neue', cursive; font-size: 1.6rem; color: var(--kit-yellow); }
+
+  .mobile-drop-prices { display: flex; gap: 8px; margin-bottom: 1rem; }
+  .mobile-drop-price {
+    flex: 1; background: rgba(245,240,232,0.04); border: 1px solid rgba(245,240,232,0.07);
+    border-radius: 3px; padding: 8px 6px; text-align: center;
+  }
+  .mobile-drop-price-num { font-family: 'Bebas Neue', cursive; font-size: 1.3rem; color: var(--kit-yellow); line-height: 1; }
+  .mobile-drop-price-label { font-size: 0.55rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,240,232,0.38); }
+
+  .mobile-drop-cta {
+    display: block; width: 100%; background: var(--kit-yellow); color: var(--teal);
+    text-align: center; padding: 12px; font-size: 0.78rem; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+    border-radius: 3px;
+  }
+
+  .mobile-ig-btn {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--kit-yellow);
+    color: var(--teal);
+    padding: 16px 24px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; padding-top: 160px; }
-    .hero-right { display: none; }
-    nav { padding: 0 1.5rem; height: 80px; }
-    .scores-bar { top: 80px; }
-    .hero { padding-top: 120px; }
+    /* Nav */
+    nav { padding: 0 1.25rem; height: 75px; }
+    .scores-bar { top: 75px; }
     .nav-links { display: none; }
-    .nav-logo svg { width: 60px; height: 60px; }
-    .nav-logo-text { font-size: 2rem; }
-    .hero-left { padding: 3rem 1.5rem; }
-    .section { padding: 4rem 1.5rem; }
-    .nations-section, .wc-promo, .printing-section { padding: 4rem 1.5rem; }
-    .wc-promo-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-ig { display: none; }
+    .nav-hamburger { display: flex; }
+    .mobile-menu { display: flex; }
+    .nav-logo svg { width: 55px; height: 55px; }
+    .nav-logo-text { font-size: 1.8rem; letter-spacing: 3px; }
+    .nav-logo { gap: 10px; }
+
+    /* Cursor off */
     body { cursor: auto; }
     .cursor-ring, .cursor-dot { display: none; }
+
+    /* Hero */
+    .hero { padding-top: 110px; min-height: auto; }
+    .hero-wc-feature { grid-template-columns: 1fr; flex: none; }
+    .hero-wc-right { display: none; }
+    .hero-wc-left { padding: 1.5rem 1.25rem; }
+    .hero-wc-title { font-size: clamp(2rem, 8vw, 3rem); }
+    .hero-wc-desc { font-size: 0.82rem; margin-bottom: 1rem; }
+    .hero-wc-feature-prices { gap: 6px; }
+    .hero-wc-price-pill { padding: 5px 10px; font-size: 0.95rem; }
+
+    .hero-main { grid-template-columns: 1fr; flex: none; }
+    .hero-right { display: none; }
+    .hero-left {
+      padding: 1.5rem 1.25rem 2rem;
+      justify-content: flex-start;
+    }
+    .hero-title { font-size: clamp(3.5rem, 14vw, 6rem); }
+    .hero-tagline { font-size: clamp(1.2rem, 5vw, 1.8rem); margin-bottom: 1rem; }
+    .hero-sub { font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .hero-ctas { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .btn-primary, .btn-outline { width: 100%; text-align: center; padding: 14px 20px; box-sizing: border-box; }
+    .hero-stats { gap: 1.5rem; margin-top: 1.5rem; padding-top: 1.5rem; }
+
+    /* Sections */
+    .section { padding: 3rem 1.25rem; }
+    .section-head { margin-bottom: 2rem; }
+    .league-tabs { gap: 4px; }
+    .league-tab { padding: 6px 12px; font-size: 0.68rem; }
+    .shirts-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Nations */
+    .nations-section { padding: 3rem 1.25rem; }
+    .nations-grid { grid-template-columns: repeat(3, 1fr); }
+    .nation-card { padding: 1.25rem 0.5rem; }
+    .nation-flag { font-size: 1.8rem; }
+
+    /* WC promo */
+    .wc-promo { padding: 3rem 1.25rem; }
+    .wc-promo-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .wc-matchup { padding: 1.5rem 1rem; }
+    .wc-team-flag { font-size: 2.5rem; }
+    .wc-team-shirt { font-size: 3rem; }
+    .wc-price-row { gap: 0.75rem; }
+    .print-card { min-width: 90px; padding: 1.25rem 1rem; }
+
+    /* Deal strip */
+    .deal-strip { padding: 1rem 1.25rem; gap: 1rem; flex-direction: column; text-align: center; }
+
+    /* Printing */
+    .printing-section { padding: 3rem 1.25rem; flex-direction: column; }
+    .printing-price-cards { justify-content: center; }
+
+    /* How to order */
+    .how-section { padding: 3rem 1.25rem; }
+    .steps { grid-template-columns: 1fr; }
+
+    /* Footer */
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    footer { padding: 3rem 1.25rem 2rem; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+
+    /* Nav dropdown — disable on mobile, handled by drawer */
+    .nav-dropdown { display: none !important; }
   }
 </style>
 </head>
@@ -957,8 +1151,96 @@
       </div>
       Order on Instagram
     </a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-menu" id="mobile-menu">
+  <!-- Leagues -->
+  <div>
+    <div class="mobile-nav-link" onclick="toggleMobileDropdown('mob-leagues')">
+      Leagues <span id="mob-leagues-arrow">↓</span>
+    </div>
+    <div class="mobile-dropdown" id="mob-leagues">
+      <div class="mobile-dropdown-inner">
+        <div class="mobile-drop-shirts">
+          <div class="mobile-drop-shirt" style="background:linear-gradient(160deg,#a50044,#003087);">👕<div class="mobile-drop-shirt-label">Barca</div></div>
+          <div class="mobile-drop-shirt" style="background:linear-gradient(160deg,#c8102e,#6b0000);">👕<div class="mobile-drop-shirt-label">Liverpool</div></div>
+          <div class="mobile-drop-shirt" style="background:linear-gradient(160deg,#c8102e,#800000);">👕<div class="mobile-drop-shirt-label">Man Utd</div></div>
+          <div class="mobile-drop-shirt" style="background:linear-gradient(160deg,#034694,#000d29);">👕<div class="mobile-drop-shirt-label">Chelsea</div></div>
+        </div>
+        <a href="#leagues" class="mobile-drop-cta" onclick="closeMobileMenu()">Browse All Leagues ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nations -->
+  <div>
+    <div class="mobile-nav-link" onclick="toggleMobileDropdown('mob-nations')">
+      Nations <span id="mob-nations-arrow">↓</span>
+    </div>
+    <div class="mobile-dropdown" id="mob-nations">
+      <div class="mobile-dropdown-inner">
+        <div class="mobile-drop-flags">
+          <div class="mobile-drop-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿<div class="mobile-drop-flag-name">England</div></div>
+          <div class="mobile-drop-flag">🇧🇷<div class="mobile-drop-flag-name">Brazil</div></div>
+          <div class="mobile-drop-flag">🇦🇷<div class="mobile-drop-flag-name">Argentina</div></div>
+          <div class="mobile-drop-flag">🇫🇷<div class="mobile-drop-flag-name">France</div></div>
+          <div class="mobile-drop-flag">🇩🇪<div class="mobile-drop-flag-name">Germany</div></div>
+          <div class="mobile-drop-flag">🇳🇬<div class="mobile-drop-flag-name">Nigeria</div></div>
+          <div class="mobile-drop-flag">🇯🇵<div class="mobile-drop-flag-name">Japan</div></div>
+          <div class="mobile-drop-flag">🌍<div class="mobile-drop-flag-name">80+ More</div></div>
+        </div>
+        <a href="#nations" class="mobile-drop-cta" onclick="closeMobileMenu()">All Nations ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- World Cup -->
+  <div>
+    <div class="mobile-nav-link" onclick="toggleMobileDropdown('mob-wc')">
+      World Cup 2026 <span id="mob-wc-arrow">↓</span>
+    </div>
+    <div class="mobile-dropdown" id="mob-wc">
+      <div class="mobile-dropdown-inner">
+        <div class="mobile-drop-wc">
+          <div class="mobile-drop-wc-team"><div class="mobile-drop-wc-flag">🇲🇽</div><div class="mobile-drop-wc-name">Mexico</div></div>
+          <div class="mobile-drop-wc-vs">VS</div>
+          <div class="mobile-drop-wc-team"><div class="mobile-drop-wc-flag">🇿🇦</div><div class="mobile-drop-wc-name">S. Africa</div></div>
+        </div>
+        <div class="mobile-drop-prices">
+          <div class="mobile-drop-price"><div class="mobile-drop-price-num">£23</div><div class="mobile-drop-price-label">Per Shirt</div></div>
+          <div class="mobile-drop-price"><div class="mobile-drop-price-num">£65</div><div class="mobile-drop-price-label">3 For Deal</div></div>
+          <div class="mobile-drop-price"><div class="mobile-drop-price-num">+£3</div><div class="mobile-drop-price-label">Printing</div></div>
+        </div>
+        <a href="#worldcup" class="mobile-drop-cta" onclick="closeMobileMenu()">Shop World Cup Kits ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- How To Order -->
+  <div>
+    <div class="mobile-nav-link" onclick="toggleMobileDropdown('mob-order')">
+      How To Order <span id="mob-order-arrow">↓</span>
+    </div>
+    <div class="mobile-dropdown" id="mob-order">
+      <div class="mobile-dropdown-inner">
+        <div class="mobile-drop-steps">
+          <div class="mobile-drop-step"><div class="mobile-drop-step-num">01</div><div class="mobile-drop-step-icon">👀</div><div class="mobile-drop-step-text">Browse the collection</div></div>
+          <div class="mobile-drop-step"><div class="mobile-drop-step-num">02</div><div class="mobile-drop-step-icon">📩</div><div class="mobile-drop-step-text">DM on Instagram</div></div>
+          <div class="mobile-drop-step"><div class="mobile-drop-step-num">03</div><div class="mobile-drop-step-icon">💳</div><div class="mobile-drop-step-text">Pay & confirm</div></div>
+          <div class="mobile-drop-step"><div class="mobile-drop-step-num">04</div><div class="mobile-drop-step-icon">📦</div><div class="mobile-drop-step-text">Delivered to your door</div></div>
+        </div>
+        <a href="#order" class="mobile-drop-cta" onclick="closeMobileMenu()">See Full Steps ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://www.instagram.com/retroroster" target="_blank" class="mobile-ig-btn">📸 Order on Instagram</a>
+</div>
 
 <!-- WATERMARK -->
 <div class="watermark" aria-hidden="true">
@@ -1319,6 +1601,36 @@
     document.querySelectorAll('#club-grid .shirt-card').forEach(card=>{
       card.style.display=(league==='all'||card.dataset.league===league)?'block':'none';
     });
+  }
+
+  // Hamburger menu
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function toggleMobileDropdown(id) {
+    const el = document.getElementById(id);
+    const arrow = document.getElementById(id + '-arrow');
+    const isOpen = el.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.mobile-dropdown').forEach(d => d.classList.remove('open'));
+    document.querySelectorAll('[id$="-arrow"]').forEach(a => a.textContent = '↓');
+    // Open clicked if it was closed
+    if (!isOpen) {
+      el.classList.add('open');
+      arrow.textContent = '↑';
+    }
   }
 </script>
 </body>
