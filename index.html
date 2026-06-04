@@ -121,12 +121,12 @@
   /* ── NAV DROPDOWNS — all links ── */
   .nav-item { position: relative; }
   .nav-item > a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--kit-yellow); transition: width 0.3s; }
-  .nav-item:hover > a { color: var(--cream); }
-  .nav-item:hover > a::after { width: 100%; }
+  .nav-item:hover > a, .nav-item.active > a { color: var(--cream); }
+  .nav-item:hover > a::after, .nav-item.active > a::after { width: 100%; }
 
   .nav-dropdown {
     position: absolute;
-    top: calc(100% + 16px);
+    top: calc(100% + 8px);
     left: 50%;
     transform: translateX(-50%) translateY(-8px);
     width: 320px;
@@ -142,7 +142,7 @@
     z-index: 600;
   }
 
-  .nav-item:hover .nav-dropdown {
+  .nav-item .nav-dropdown.open {
     max-height: 500px;
     opacity: 1;
     pointer-events: all;
@@ -1594,6 +1594,41 @@
 
   const co = new IntersectionObserver(es=>es.forEach((e,i)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('flipped-in'),i*80); }),{threshold:0.1});
   document.querySelectorAll('.shirt-card').forEach(c=>co.observe(c));
+
+  // Nav dropdowns with close delay
+  let dropdownTimer = null;
+  document.querySelectorAll('.nav-item').forEach(item => {
+    const dropdown = item.querySelector('.nav-dropdown');
+    if (!dropdown) return;
+
+    item.addEventListener('mouseenter', () => {
+      clearTimeout(dropdownTimer);
+      // Close all others
+      document.querySelectorAll('.nav-item .nav-dropdown.open').forEach(d => {
+        if (d !== dropdown) d.classList.remove('open');
+      });
+      dropdown.classList.add('open');
+      item.classList.add('active');
+    });
+
+    item.addEventListener('mouseleave', () => {
+      dropdownTimer = setTimeout(() => {
+        dropdown.classList.remove('open');
+        item.classList.remove('active');
+      }, 150);
+    });
+
+    dropdown.addEventListener('mouseenter', () => {
+      clearTimeout(dropdownTimer);
+    });
+
+    dropdown.addEventListener('mouseleave', () => {
+      dropdownTimer = setTimeout(() => {
+        dropdown.classList.remove('open');
+        item.classList.remove('active');
+      }, 150);
+    });
+  });
 
   function filterLeague(btn,league){
     document.querySelectorAll('.league-tab').forEach(t=>t.classList.remove('active'));
